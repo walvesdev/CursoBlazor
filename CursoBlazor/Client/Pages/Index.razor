@@ -1,5 +1,4 @@
 ﻿@page "/"
-@inject IRepositorio repositorio
 
 <div>
     <h3>Lista de Filmes:</h3>
@@ -8,20 +7,3 @@
     <ListarFilmes Filmes="Filmes" />
 </div>
 
-
-@code {
-
-    public List<Filme> Filmes { get; set; }
-
-    protected override void OnInitialized()
-    {
-        GetAllFilmes();
-    }
-
-    private List<Filme> GetAllFilmes()
-    {
-        return Filmes = repositorio.GetAllFilmes();
-    }
-
-
-}
