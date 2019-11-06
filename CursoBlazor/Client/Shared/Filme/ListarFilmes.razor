@@ -1,42 +1,20 @@
 ﻿
+<div>
+    @*Editar Lista:<input type="checkbox" @onchange="@(() => MostrarBotao = !MostrarBotao)" />*@
+    Editar Lista:<input type="checkbox" @bind="MostrarBotao" />
+</div>
 
-@if (Filmes == null)
-{
-    if (Carregando == null)
-    {
-        <text> Carregando Filmes... </text>
-    }
-    else
-    {
-        @Carregando
-    }
-}
-else if (Filmes.Count == 0)
-{
-    if (NaoEncontrado == null)
-    {
-        <text> Não Há Filmes Cadastrados! </text>
-    }
-    else
-    {
-        @NaoEncontrado
-    }
-}
-else
-{
-    <div>
-        <h3>Lista de Filmes:</h3>
-    </div>
-    <div>
-        @*Editar Lista:<input type="checkbox" @onchange="@(() => MostrarBotao = !MostrarBotao)" />*@
-        Editar Lista:<input type="checkbox" @bind="MostrarBotao" />
-    </div>
-    <div class="filmes">
-        @foreach (var filme in Filmes)
-        {
-            <FilmeIndividual Filme="filme" MostrarBotao="MostrarBotao" ExcluirFilme="ExcluirFilme" />
-        }
-    </div>
+
+<div class="filmes">
+
+    <ListaGenerica Lista="Filmes">
+        @*<Registros Context="filme">*@
+        <Registros>
+            <FilmeIndividual Filme="context" MostrarBotao="MostrarBotao" ExcluirFilme="ExcluirFilme" />
+        </Registros>
+    </ListaGenerica>
+
+</div>
 }
 
 @code {
@@ -44,8 +22,6 @@ else
     [Parameter] public List<Filme> Filmes { get; set; }
     [Parameter] public bool MostrarBotao { get; set; } = false;
 
-    [Parameter] public RenderFragment Carregando { get; set; }
-    [Parameter] public RenderFragment NaoEncontrado { get; set; }
 
     void ExcluirFilme(Filme filme)
     {

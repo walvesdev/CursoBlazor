@@ -1,0 +1,41 @@
+﻿@typeparam T
+
+@if (Lista == null)
+{
+    if (Carregando == null)
+    {
+        <text> Carregando Dados... </text>
+    }
+    else
+    {
+        @Carregando
+    }
+}
+else if (Lista.Count == 0)
+{
+    if (NaoEncontrado == null)
+    {
+        <text> Nenhum Registro Encontrado! </text>
+    }
+    else
+    {
+        @NaoEncontrado
+    }
+}
+else
+{
+    @foreach (var item in Lista)
+    {
+        @Registros(item)
+    }
+}
+
+@code {
+
+    [Parameter] public RenderFragment Carregando { get; set; }
+    [Parameter] public RenderFragment NaoEncontrado { get; set; }
+    [Parameter] public RenderFragment<T> Registros { get; set; }
+    [Parameter] public List<T> Lista { get; set; }
+
+
+}
