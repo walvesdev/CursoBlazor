@@ -1,0 +1,36 @@
+﻿
+
+@if (Filmes == null)
+{
+    <text> Carregando Filmes... </text>
+}
+else if (Filmes.Count == 0)
+{
+    <text> Não há filmes cadastrados! </text>
+}
+else
+{
+    <div>
+        <h3>Lista de Filmes:</h3>
+    </div>
+    <div>
+        @*Editar Lista:<input type="checkbox" @onchange="@(() => MostrarBotao = !MostrarBotao)" />*@
+
+        Editar Lista:<input type="checkbox" @bind="MostrarBotao" />
+
+    </div>
+    <div class="filmes">
+        @foreach (var filme in Filmes)
+        {
+            <FilmeIndividual Filme="filme" MostrarBotao="MostrarBotao" />
+        }
+    </div>
+}
+
+@code {
+
+    [Parameter] public List<Filme> Filmes { get; set; }
+    [Parameter] public bool MostrarBotao { get; set; } = false;
+    [Parameter] public 
+
+}
