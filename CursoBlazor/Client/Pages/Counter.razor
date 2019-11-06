@@ -8,9 +8,16 @@
 
 @code {
     private int currentCount = 0;
+    static int currentCountStatic = 0;
 
     private void IncrementCount()
     {
         currentCount++;
+        currentCountStatic++;
+    }
+    [JSInvokable]
+    public static Task<int> TesteJavaScript()
+    {
+        return Task.FromResult(currentCountStatic);
     }
 }
