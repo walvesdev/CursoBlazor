@@ -14,7 +14,7 @@
             </a>
             @if (MostrarBotao)
             {
-                <button class="btn btn-danger" @onclick="Excluir">Excluir</button>
+                <button class="btn btn-danger" @onclick="@(() => ExcluirFilme.InvokeAsync(Filme))">Excluir</button>
             }
         </div>
     </div>
@@ -23,9 +23,6 @@
 @code {
     [Parameter] public Filme Filme { get; set; }
     [Parameter] public bool MostrarBotao { get; set; } = false;
-
-    void Excluir()
-    {
-        Console.WriteLine($"Excluir Filme {Filme.Titulo}");
-    }
+    [Parameter] public EventCallback<Filme> ExcluirFilme { get; set; }
+   
 }

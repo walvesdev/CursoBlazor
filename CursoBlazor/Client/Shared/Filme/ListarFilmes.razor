@@ -22,7 +22,7 @@ else
     <div class="filmes">
         @foreach (var filme in Filmes)
         {
-            <FilmeIndividual Filme="filme" MostrarBotao="MostrarBotao" />
+            <FilmeIndividual Filme="filme" MostrarBotao="MostrarBotao" ExcluirFilme="ExcluirFilme"/>
         }
     </div>
 }
@@ -31,6 +31,10 @@ else
 
     [Parameter] public List<Filme> Filmes { get; set; }
     [Parameter] public bool MostrarBotao { get; set; } = false;
-    [Parameter] public 
 
+    void ExcluirFilme(Filme filme)
+    {
+        Console.WriteLine($"Removendo FIlme: {filme.Titulo}");
+        Filmes.Remove(filme);
+    }
 }
