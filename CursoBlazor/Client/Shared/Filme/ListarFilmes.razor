@@ -22,7 +22,23 @@
     [Parameter] public List<Filme> Filmes { get; set; }
     [Parameter] public bool MostrarBotao { get; set; } = false;
 
-
+    protected override void OnInitialized()
+    {
+        Console.WriteLine($"OnInitialized - Qtde. de Filmes: {Filmes.Count()}");
+    }
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine($"OnParametersSet - Qtde. de Filmes: {Filmes.Count()}");
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Console.WriteLine($"OnAfterRender: Executado pela 1ª vez? {firstRender}");
+    }
+    protected override bool ShouldRender()
+    {
+        Console.WriteLine($"ShouldRender");
+        return true;
+    }
     void ExcluirFilme(Filme filme)
     {
         Console.WriteLine($"Removendo FIlme: {filme.Titulo}");

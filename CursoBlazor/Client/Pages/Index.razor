@@ -1,29 +1,26 @@
 ﻿@page "/"
+@inject IRepositorio repositorio
 
 <div>
     <h3>Lista de Filmes:</h3>
 </div>
 <div>
-    <ListarFilmes Filmes="GetAllFilmes()" />
+    <ListarFilmes Filmes="Filmes" />
 </div>
 
 
 @code {
 
+    public List<Filme> Filmes { get; set; }
+
+    protected override void OnInitialized()
+    {
+        GetAllFilmes();
+    }
+
     private List<Filme> GetAllFilmes()
     {
-        return new List<Filme>()
-    {
-                    new Filme(){Titulo = "Senhor dos Aneis",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Homem Aranha",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Marvel",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "007",Lancamento = new DateTime(2009, 8, 2) }
-
-                };
+        return Filmes = repositorio.GetAllFilmes();
     }
 
 
