@@ -1,7 +1,14 @@
 ﻿@page "/"
 
 <div>
-    <ListarFilmes Filmes="GetAllFilmes()" />
+    <ListarFilmes Filmes="GetAllFilmes()" >
+        <Carregando>
+            <h1>Carregando Filmes 2</h1>
+        </Carregando>
+        <NaoEncontrado>
+            <h1>Filmes Não Encontrados 2</h1>
+        </NaoEncontrado>
+    </ListarFilmes>
 </div>
 
 
@@ -10,17 +17,17 @@
     private List<Filme> GetAllFilmes()
     {
         return new List<Filme>()
-{
-            new Filme(){Titulo = "Senhor dos Aneis",Lancamento = new DateTime(2009, 8, 2) },
-            new Filme(){Titulo = "Homem Aranha",Lancamento = new DateTime(2009, 8, 2) },
-            new Filme(){Titulo = "Marvel",Lancamento = new DateTime(2009, 8, 2) },
-            new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-            new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-            new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-            new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-            new Filme(){Titulo = "007",Lancamento = new DateTime(2009, 8, 2) }
+        {
+                    new Filme(){Titulo = "Senhor dos Aneis",Lancamento = new DateTime(2009, 8, 2) },
+                    new Filme(){Titulo = "Homem Aranha",Lancamento = new DateTime(2009, 8, 2) },
+                    new Filme(){Titulo = "Marvel",Lancamento = new DateTime(2009, 8, 2) },
+                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
+                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
+                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
+                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
+                    new Filme(){Titulo = "007",Lancamento = new DateTime(2009, 8, 2) }
 
-        };
+                };
     }
 
 
