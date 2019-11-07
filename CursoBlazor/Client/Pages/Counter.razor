@@ -1,19 +1,29 @@
 ﻿@page "/counter"
+@inject IJSRuntime js
 
 <h1>Counter</h1>
 
 <p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="IncrementCountJavascript">Click me by javascript</button>
 
 @code {
     private int currentCount = 0;
     static int currentCountStatic = 0;
 
-    private void IncrementCount()
+    [JSInvokable]
+    public async Task IncrementCount()
     {
         currentCount++;
         currentCountStatic++;
+        await js.InvokeVoidAsync("TesteJavaScript");
+    }
+    public async Task IncrementCountJavascript()
+    {
+        await js.InvokeVoidAsync("TesteJavaScriptMetodoInstancia",
+            DotNetObjectReference.Create(this)
+            );
     }
     [JSInvokable]
     public static Task<int> TesteJavaScript()

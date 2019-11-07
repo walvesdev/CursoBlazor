@@ -1,5 +1,7 @@
 ﻿@typeparam T
 
+@ChildContent
+
 @if (Lista == null)
 {
     if (Carregando == null)
@@ -32,6 +34,7 @@ else
 
 @code {
 
+    [Parameter] public RenderFragment ChildContent { get; set; }
     [Parameter] public RenderFragment Carregando { get; set; }
     [Parameter] public RenderFragment NaoEncontrado { get; set; }
     [Parameter] public RenderFragment<T> Registros { get; set; }

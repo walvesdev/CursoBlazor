@@ -4,3 +4,7 @@ function TesteJavaScript() {
         console.log("Conteudo C# " + resultado);
     });
 }
+
+function TesteJavaScriptMetodoInstancia(dotNetObjectReference) {
+    dotNetObjectReference.invokeMethodAsync("IncrementCount");
+}
