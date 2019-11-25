@@ -1,0 +1,49 @@
+﻿<h3>@Acao Pessoa</h3>
+
+<EditForm Model="Pessoa" OnValidSubmit="OnvalidSubmit">
+    <DataAnnotationsValidator />
+
+    <div class="form-group">
+        <label>Nome:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Pessoa.Nome" />
+            <ValidationMessage For="@(() => Pessoa.Nome)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Data Nascimento:</label>
+        <div>
+            <InputDate class="form-control" @bind-Value="@Pessoa.DataNascimento" />
+            <ValidationMessage For="@(() => Pessoa.DataNascimento)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <InputImg Label="Foto" ImagemSelecionada="ImagemSelecionada" ImagemTemporal="" />
+    </div>
+    <div class="form-group">
+
+    </div>
+    <button type="submit" class="btn btn-primary" @onclick="OnvalidSubmit">Adicionar</button>
+</EditForm>
+
+@code {
+    [Parameter] public Pessoa Pessoa { get; set; }
+    [Parameter] public string Acao { get; set; }
+    [Parameter] public EventCallback OnvalidSubmit { get; set; }
+
+    private string imagemTemporal;
+
+    protected override void OnInitialized()
+    {
+        if (!string.IsNullOrWhiteSpace(Pessoa.Foto))
+        {
+            imagemTemporal = Pessoa.Foto;
+            Pessoa.Foto = null;
+        }
+    }
+
+    private void ImagemSelecionada(string imagemBase64)
+    {
+        Pessoa.Foto = imagemBase64;
+    }
+}

@@ -12,14 +12,15 @@ namespace CursoBlazor.Client.Repositorios
         {
             return new List<Filme>()
     {
-                    new Filme(){Titulo = "Senhor dos Aneis",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Homem Aranha",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Marvel",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "Ronin",Lancamento = new DateTime(2009, 8, 2) },
-                    new Filme(){Titulo = "007",Lancamento = new DateTime(2009, 8, 2) }
+                    new Filme(){Titulo = "Senhor dos Anéis",Lancamento = new DateTime(2002, 12, 27), Imagem = "img/sanel.jpg" },
+                    new Filme(){Titulo = "Homem Aranha",Lancamento = new DateTime(2002, 5, 17) , Imagem = "img/homenaranha.jpg"},
+                    new Filme(){Titulo = "Vingadores: Guerra Infinita",Lancamento = new DateTime(2018, 4, 26) , Imagem = "img/guerrainfinita.jpg"},
+                    new Filme(){Titulo = "O Homem de Aço",Lancamento = new DateTime(2013, 6, 12), Imagem = "img/o-homem-de-aco.jpg" },
+                    new Filme(){Titulo = "47 Ronins",Lancamento = new DateTime(2014, 1, 31) , Imagem = "img/47-ronins.jpg"},
+                    new Filme(){Titulo = "Hannibal",Lancamento = new DateTime(2013, 4, 4) , Imagem = "img/hannibal.jpg"},
+                    new Filme(){Titulo = "Hitman: Agente 47",Lancamento = new DateTime(2015, 8, 27) , Imagem = "img/hitiman47.jpg"},
+                    new Filme(){Titulo = "GoldenEye 007",Lancamento = new DateTime(1995, 12, 15) , Imagem = "img/GoldenEye007.jpg"},
+                    new Filme(){Titulo = "Rambo 4",Lancamento = new DateTime(2019, 9, 19) , Imagem = "img/rambo.jpg"}
 
                 };
         }

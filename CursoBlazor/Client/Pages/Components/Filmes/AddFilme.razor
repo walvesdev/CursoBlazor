@@ -1,0 +1,16 @@
+﻿@page "/filme/add"
+@inject NavigationManager navigatorManager
+
+
+<h3>Adicionar Filme</h3>
+
+<button @onclick="Adicionar"> Salvar Filme</button>  
+
+@code {
+
+    void Adicionar(){
+        Console.WriteLine( navigatorManager.Uri );
+        navigatorManager.NavigateTo("filme");
+    }
+
+}

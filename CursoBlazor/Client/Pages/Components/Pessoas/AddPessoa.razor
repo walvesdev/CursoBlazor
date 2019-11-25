@@ -1,0 +1,19 @@
+﻿@page "/pessoa/add"
+
+
+<FormularioPessoa Acao="Adicionar" Pessoa="pessoa" OnvalidSubmit="Adicionar" />
+
+@code {
+    protected Pessoa pessoa;
+
+    protected override void OnInitialized()
+    {
+        pessoa = new Pessoa() { Nome = "Nome pessoa teste" };
+    }
+    void Adicionar()
+    {
+        Console.WriteLine($"Onome da pessoa: {pessoa.Nome}");
+
+    }
+
+}

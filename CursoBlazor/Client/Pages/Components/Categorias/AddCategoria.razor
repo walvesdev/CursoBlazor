@@ -1,0 +1,14 @@
+﻿@page "/categoria/add"
+
+<h3>Adicionar Categoria</h3>
+
+<FormularioCategoria Categoria="Categoria" OnvalidSubmit="Adicionar"/>
+
+@code {
+    Categoria Categoria = new Categoria();
+
+    void Adicionar()
+    {
+        Console.WriteLine($"Adicionar Categoria: {Categoria.Nome}");
+    }
+}

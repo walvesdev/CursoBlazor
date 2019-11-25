@@ -1,0 +1,85 @@
+﻿@page "/filme/search"
+@inject IRepositorio repositorio
+
+<h3>Pesquisar Filme</h3>
+
+<div class="form-inline">
+    <div class="form-group mb-2">
+        <label for="titulo" class="sr-only">Título</label>
+        <input type="text" id="titulo" class="form-control" placeholder="Titulo do filme"
+               @bind-value="titulo" @bind-value:event="oninput"
+               @onkeypress="@((KeyboardEventArgs e) => TituloKeyPress(e))" />
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <select class="form-control" @bind="categoriaSelecionada">
+            <option value="0">-- Selecione uma Categoria --</option>
+            @foreach (var item in categorias)
+            {
+                <option value="@item.Id">@item.Nome</option>
+            }
+        </select>
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="checkbox" class="form-check-input" id="lancamento" @bind="lancamento" />
+        <label class="form-check-input" for="lancamento"> Lançamento</label>
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="checkbox" class="form-check-input" id="cartaz" @bind="cartaz" />
+        <label class="form-check-input" for="cartaz"> Cartaz</label>
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="checkbox" class="form-check-input" id="maisVotado" @bind="maisVotado" />
+        <label class="form-check-input" for="maisVotado"> Top Ranking</label>
+    </div>
+    <button type="button" class="btn btn-primary mb-2 mx-sm-3" @onclick="FiltrarFilme">Filtrar</button>
+    <button type="button" class="btn btn-danger mb-2 mx-sm-3" @onclick="LimparFiltro">Limpar Filtro</button>
+
+</div>
+
+<ListaFilmeComponent Filmes="Filmes" />
+
+@code {
+
+    public List<Filme> Filmes { get; set; }
+
+    string titulo = "";
+    string categoriaSelecionada = "0";
+    bool lancamento = false;
+    bool cartaz = false;
+    bool maisVotado = false;
+
+    private List<Categoria> categorias = new List<Categoria>();
+
+    protected override void OnInitialized()
+    {
+        Filmes = repositorio.GetAllFilmes();
+    }
+
+    void TituloKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            FiltrarFilme();
+        }
+    }
+
+    void FiltrarFilme()
+    {
+
+        Filmes = Filmes.Where(f => f.Titulo.ToLower().Contains(titulo.ToLower())).ToList();
+
+        Console.WriteLine($"titulo: {titulo}");
+        Console.WriteLine($"categoria Selecionada :{categoriaSelecionada}");
+        Console.WriteLine($"lancamento: {lancamento}");
+        Console.WriteLine($"cartaz: {cartaz}");
+        Console.WriteLine($"mais Votado: {maisVotado}");
+    }
+    void LimparFiltro()
+    {
+        titulo = "";
+        categoriaSelecionada = "0";
+        lancamento = false;
+        cartaz = false;
+        maisVotado = false;
+    }
+}

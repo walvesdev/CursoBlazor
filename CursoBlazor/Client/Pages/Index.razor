@@ -4,6 +4,26 @@
     <h3>Lista de Filmes:</h3>
 </div>
 <div>
-    <ListarFilmes Filmes="Filmes" />
+    <ListaFilmeComponent Filmes="Filmes" />
 </div>
 
+<!-- #region Code -->
+
+@code {
+
+    [Inject] protected IRepositorio Repositorio { get; set; }
+
+    public List<Filme> Filmes { get; set; }
+
+    protected override void OnInitialized()
+    {
+        GetAllFilmes();
+    }
+
+    private List<Filme> GetAllFilmes()
+    {
+        return Filmes = Repositorio.GetAllFilmes();
+    }
+}
+
+<!-- #endregion -->

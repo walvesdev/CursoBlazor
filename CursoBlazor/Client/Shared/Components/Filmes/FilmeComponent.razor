@@ -1,0 +1,47 @@
+﻿
+<div class="filme">
+    <div class="card" style="width: 18rem; height:600px">
+        <a href="@urlFilme" style="height: 400px;">
+            <img src="@Filme.Imagem" class="card-img-top" style="height: 400px;" alt="...">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">
+                Título:
+                <b>
+                    <a href="@urlFilme">
+                        @Filme.TituloResumido
+                    </a>
+                </b>
+            </h5>
+            <p class="card-text">
+                Lançamento:<b>@Filme.Lancamento.ToString("dd/MM/yyyy")</b>
+            </p>
+            <a href="#" class="btn btn-primary">
+                Ver Filme
+            </a>
+            @if (MostrarBotao)
+            {
+                <button class="btn btn-danger" @onclick="@(() => ExcluirFilme.InvokeAsync(Filme))">Excluir</button>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- #region Code -->
+
+@code {
+    [Parameter] public Filme Filme { get; set; }
+    [Parameter] public bool MostrarBotao { get; set; } = false;
+    [Parameter] public EventCallback<Filme> ExcluirFilme { get; set; }
+
+    private string urlFilme = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        urlFilme = $"filme/";
+    }
+    
+
+}
+
+<!-- #endregion -->

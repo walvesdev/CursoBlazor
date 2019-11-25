@@ -1,0 +1,13 @@
+﻿@page "/filme/{FilmeId:int}"
+@page "/filme/{FilmeId:int}/{NomeFilme}"
+
+<h3>ViewFilme</h3>
+
+@code {
+    [Parameter] public int FilmeId { get; set; }  
+    [Parameter] public string NomeFilme { get; set; }  
+
+    protected override  void OnInitialized(){
+        Console.WriteLine($"Id:{FilmeId} nome filme:{NomeFilme}");
+    }                            
+}
