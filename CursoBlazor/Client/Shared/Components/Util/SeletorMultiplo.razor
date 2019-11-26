@@ -1,8 +1,51 @@
-﻿<div>
+﻿<div class="seletor-multiplo">
+    <ul class="ul-selecionavel">
+        @foreach (var item in NaoSelecionados)
+        {
+            <li @onclick="@(() => Selecionar(item))">@item.Valor</li>
+        }
+    </ul>
 
+    <div class="seletor-multiplo-botao">
+        <button type="button" @onclick="SelecionarTudo">>></button>
+        <button type="button" @onclick="RemoverTodaSelecao">@removerSelecaoBtn</button>
+    </div>
+
+    <ul class="ul-selecionavel">
+        @foreach (var item in Selecionados)
+        {
+            <li @onclick="@(() => RemoverSelecao(item))">@item.Valor</li>
+        }
+    </ul>
 </div>
+
 
 
 @code {
 
+    [Parameter] public List<SeletorMultiploModel> NaoSelecionados { get; set; } = new List<SeletorMultiploModel>();
+    [Parameter] public List<SeletorMultiploModel> Selecionados { get; set; } = new List<SeletorMultiploModel>();
+
+    private string removerSelecaoBtn = "<<";
+
+    private void Selecionar(SeletorMultiploModel item)
+    {
+        NaoSelecionados.Remove(item);
+        Selecionados.Add(item);
+    }
+    private void RemoverSelecao(SeletorMultiploModel item)
+    {
+        Selecionados.Remove(item);
+        NaoSelecionados.Add(item);
+    }
+    private void SelecionarTudo()
+    {
+        Selecionados.AddRange(NaoSelecionados);
+        NaoSelecionados.Clear();
+    }
+    private void RemoverTodaSelecao()
+    {
+        NaoSelecionados.AddRange(Selecionados);
+        Selecionados.Clear();
+    }
 }

@@ -17,11 +17,11 @@
             </div>
         </div>
     }
-    @if (ImagemTemporal != null)
+    @if (ImagemTemporaria != null)
     {
         <div>
             <div style="margin:10px;">
-                <img src="@ImagemTemporal" style="width:400px" />
+                <img src="@ImagemTemporaria" style="width:400px" />
             </div>
         </div>
     }
@@ -29,7 +29,7 @@
 
 @code {
     [Parameter] public string Label { get; set; }
-    [Parameter] public string ImagemTemporal { get; set; }
+    [Parameter] public string ImagemTemporaria { get; set; }
     [Parameter] public EventCallback<string> ImagemSelecionada { get; set; }
 
     private string ImagemBase64;
@@ -50,7 +50,7 @@
             var imagemBytes = await fileReader.GetFileBytesAsync();
             ImagemBase64 = Convert.ToBase64String(imagemBytes);
             await ImagemSelecionada.InvokeAsync(ImagemBase64);
-            ImagemTemporal = null;
+            ImagemTemporaria = null;
             StateHasChanged();
         }
     }

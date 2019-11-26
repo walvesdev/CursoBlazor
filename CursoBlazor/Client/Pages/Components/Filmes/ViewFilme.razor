@@ -1,13 +1,25 @@
-﻿@page "/filme/{FilmeId:int}"
+﻿@page "/filme"
+@page "/filme/{FilmeId:int}"
 @page "/filme/{FilmeId:int}/{NomeFilme}"
 
-<h3>ViewFilme</h3>
+@if (FilmeId == 0 || NomeFilme == null)
+{
+    <div class="form-inline">
+        <div>
+            <a href="/filme/search" class="btn btn-outline-info mr-4">Pesquisar Filme</a>
+        </div>
+        <div>
+            <a href="/filme/add" class="btn btn-outline-warning">Adicionar Filme</a>
+        </div>
+    </div>
+}
 
 @code {
-    [Parameter] public int FilmeId { get; set; }  
-    [Parameter] public string NomeFilme { get; set; }  
+    [Parameter] public int FilmeId { get; set; }
+    [Parameter] public string NomeFilme { get; set; }
 
-    protected override  void OnInitialized(){
+    protected override void OnInitialized()
+    {
         Console.WriteLine($"Id:{FilmeId} nome filme:{NomeFilme}");
-    }                            
+    }
 }
