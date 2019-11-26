@@ -1,8 +1,22 @@
 ﻿@page "/filme/edit/{FilmeId:int}"
 
-<h3>EditFilme</h3>
+<h3>Editar Filme</h3>
+
+<FormularioFilme Filme="Filme" OnValidSubmit="Editar" />
 
 @code {
-    [Parameter] public int FilmeId { get; set; }               
 
+    [Parameter] public int FilmeId { get; set; }
+
+    private Filme Filme = new Filme();
+
+    protected override void OnInitialized()
+    {
+        Filme = new Filme() { Id = FilmeId, Titulo = "Titulo filme!" };
+    }
+
+    void Editar()
+    {
+
+    }
 }

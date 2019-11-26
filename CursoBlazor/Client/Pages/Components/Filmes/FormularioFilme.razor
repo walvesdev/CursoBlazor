@@ -1,0 +1,62 @@
+﻿
+    <EditForm Model="Filme" OnInvalidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator />
+
+        <div class="form-group">
+            <label>Titulo:</label>
+            <div>
+                <InputText class="form-control" @bind-Value="@Filme.Titulo" />
+                <ValidationMessage For="@(() => Filme.Titulo)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Em Cartaz:</label>
+            <InputCheckbox @bind-Value="@Filme.EmCartaz" />
+            <ValidationMessage For="@(() => Filme.EmCartaz)" />
+        </div>
+
+        <div class="form-group">
+            <label>Trailer:</label>
+            <div>
+                <InputText class="form-control" @bind-Value="@Filme.Trailer" />
+                <ValidationMessage For="@(() => Filme.Trailer)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Data Lançamento:</label>
+            <div>
+                <InputDate class="form-control" @bind-Value="@Filme.DataLancamento" />
+                <ValidationMessage For="@(() => Filme.DataLancamento)" />
+            </div>
+        </div>
+        <div class="form-group form-markdown">
+            <InputMarkdown @bind-Value="@Filme.Resumo"
+                           For="@(() => Filme.Resumo)"
+                           Label="Resumo" />
+        </div>
+        <div class="form-group">
+            <InputImg Label="Foto" ImagemSelecionada="ImagemSelecionada" ImagemTemporal="" />
+        </div>
+
+        <div class="form-group">
+            <label>Categoria:</label>
+            <div>
+                <SeletorMultiplo>
+
+                </SeletorMultiplo>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-4">Adicionar</button>
+    </EditForm>
+
+@code {
+
+    [Parameter] public Filme Filme { get; set; }
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private void ImagemSelecionada(string imagemBase64)
+    {
+        Filme.Imagem = imagemBase64;
+    }
+}

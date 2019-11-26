@@ -1,0 +1,31 @@
+﻿@using Markdig
+
+@if (!string.IsNullOrEmpty(ConteudoHTML))
+{
+    if (CarregarModelo != null)
+    {
+        @CarregarModelo
+    }
+    else
+    {
+        @((MarkupString)ConteudoHTML)
+    }
+}
+
+@code {
+
+    [Parameter] public string ConteudoMarkdown { get; set; }
+    [Parameter] public RenderFragment  CarregarModelo { get; set; }
+
+    private string ConteudoHTML;
+
+    protected override void OnParametersSet()
+    {
+        if (ConteudoMarkdown != null)
+        {
+            ConteudoHTML = Markdown.ToHtml(ConteudoMarkdown);
+        }
+    }
+
+
+}

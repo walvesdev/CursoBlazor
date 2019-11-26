@@ -4,9 +4,11 @@
 
 <h3>Adicionar Filme</h3>
 
-<button @onclick="Adicionar"> Salvar Filme</button>  
+<FormularioFilme Filme="Filme" OnValidSubmit="Adicionar" />
 
 @code {
+
+    private Filme Filme = new Filme();
 
     void Adicionar(){
         Console.WriteLine( navigatorManager.Uri );

@@ -1,5 +1,24 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+.form-markdown {
+    display: flex;
+}
+
+    .form-markdown textarea {
+        width: 500px;
+        height: 500px;
+        margin-right: 15px;
+    }
+
+    .form-markdown .markdown-container {
+        border: 1px dashed black;
+        width: 500px;
+        height: 500px;
+        margin-right: 15px;
+    }
+
+
+
 .filmes {
     display: flex;
     flex-direction: row;
@@ -7,12 +26,13 @@
     margin: 5px;
     padding: 5px;
 }
+
 .filme {
     margin: 20px;
 }
- 
+
 .filmes h3 {
-    display:block;
+    display: block;
 }
 
 html, body {
@@ -29,7 +49,7 @@ app {
     height: 3.5rem;
     display: flex;
     align-items: center;
-    z-index:10;
+    z-index: 10;
 }
 
 .main {
