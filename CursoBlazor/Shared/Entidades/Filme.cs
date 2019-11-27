@@ -35,6 +35,8 @@ namespace CursoBlazor.Shared.Entidades
             }
         }
         public List<CategoriaFilme> CategoriaFilme { get; set; } = new List<CategoriaFilme>();
+        public List<FilmePessoa> FilmePessoas { get; set; } = new List<FilmePessoa>();
+
 
     }
 }

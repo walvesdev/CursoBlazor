@@ -1,14 +1,28 @@
 ﻿@page "/categoria/add"
+@inject IRepositorio repositorio
+@inject NavigationManager NavigationManager
+@inject IMostrarMensagens MostrarMensagem
 
 <h3>Adicionar Categoria</h3>
 
-<FormularioCategoria Categoria="Categoria" OnvalidSubmit="Adicionar"/>
+<FormularioCategoria Categoria="Categoria" OnvalidSubmit="Adicionar" />
 
 @code {
     Categoria Categoria = new Categoria();
 
-    void Adicionar()
+    private async Task Adicionar()
     {
-        Console.WriteLine($"Adicionar Categoria: {Categoria.Nome}");
+        var httpResponse = await repositorio.Post("api/categoria", Categoria);
+
+        if (httpResponse.Error)
+        {
+            await MostrarMensagem.MostrarMensagemErro(await httpResponse.GetBody());
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/categoria");
+
+        }
+
     }
 }

@@ -14,5 +14,6 @@ namespace CursoBlazor.Shared.Entidades
         public string Foto { get; set; }
         [Required(ErrorMessage = "O Campo {0} Precisa Ser Preenchido")]
         public DateTime? DataNascimento { get; set; }
+        public List<FilmePessoa> FilmePessoas { get; set; } = new List<FilmePessoa>();
     }
 }

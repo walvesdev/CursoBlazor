@@ -1,18 +1,31 @@
 ﻿@page "/pessoa/add"
+@inject IRepositorio repositorio
+@inject NavigationManager NavigationManager
+@inject IMostrarMensagens MostrarMensagem
 
 
-<FormularioPessoa Acao="Adicionar" Pessoa="pessoa" OnvalidSubmit="Adicionar" />
+<FormularioPessoa Acao="Adicionar" Pessoa="Pessoa" OnvalidSubmit="Adicionar" />
 
 @code {
-    protected Pessoa pessoa;
+    protected Pessoa Pessoa = new Pessoa();
 
     protected override void OnInitialized()
     {
-        pessoa = new Pessoa() { Nome = "Nome pessoa teste" };
+
     }
-    void Adicionar()
+    private async Task Adicionar()
     {
-        Console.WriteLine($"Onome da pessoa: {pessoa.Nome}");
+        var httpResponse = await repositorio.Post("api/pessoa", Pessoa);
+
+        if (httpResponse.Error)
+        {
+            await MostrarMensagem.MostrarMensagemErro(await httpResponse.GetBody());
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/pessoa");
+
+        }
 
     }
 

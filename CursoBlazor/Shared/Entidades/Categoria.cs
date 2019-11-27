@@ -11,5 +11,6 @@ namespace CursoBlazor.Shared.Entidades
 
         [Required(ErrorMessage = "O campo {0} precisa ser preenchido!")]
         public string Nome { get; set; }
+        public List<CategoriaFilme> CategoriaFilme { get; set; } = new List<CategoriaFilme>();
     }
 }
