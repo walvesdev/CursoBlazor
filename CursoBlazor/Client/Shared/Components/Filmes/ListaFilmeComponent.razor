@@ -7,7 +7,7 @@
 <div class="filmes">
     <ListaGenerica Lista="Filmes">
         <Registros Context="filmeContext">
-            <FilmeComponent Filme="filmeContext" MostrarBotao="MostrarBotao" ExcluirFilme="ExcluirFilme" />
+            <FilmeComponent Filme="filmeContext" MostrarBotao="MostrarBotao" ExcluirFilme="ExcluirFilme" @key="filmeContext.Id"/>
         </Registros>
     </ListaGenerica>
 </div>

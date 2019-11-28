@@ -25,8 +25,13 @@ namespace CursoBlazor.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+
+            var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionBuilder.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+
+            services.AddTransient(_ => new ApplicationDbContext(optionBuilder.Options));
 
             services.AddMvc();
             services.AddResponseCompression(opts =>
